@@ -1,6 +1,6 @@
 {
   "name": "assemblog",
- "description": "Assemble blog.",
+  "description": "Assemble blog.",
   "version": "0.1.0",
   "homepage": "https://github.com/pr8kerl/assemblog",
   "author": {
@@ -22,15 +22,16 @@
   },
   "devDependencies": {
     "assemble": "~0.4.37",
+    "assemble-contrib-permalinks": "~0.3.6",
+    "assemble-contrib-sitemap": "*",
+    "assemble-less": "^0.7.0",
     "grunt": "~0.4.4",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-connect": "~0.7.1",
     "grunt-contrib-watch": "~0.6.1",
     "load-grunt-tasks": "~0.4.0",
-    "time-grunt": "~0.3.1",
-    "assemble-contrib-permalinks": "~0.3.6",
-    "assemble-contrib-sitemap": "*",
-    "pretty": "*"
+    "pretty": "*",
+    "time-grunt": "~0.3.1"
   },
   "licenses": [
     {

@@ -29,8 +29,8 @@ module.exports = function(grunt) {
 
     watch: {
       assemble: {
-        files: ['src/{content,data,templates}/{,*/,**/}*.{md,hbs,yml}'],
-        tasks: ['assemble']
+        files: ['src/{content,data,templates,style}/{,*/,**/}*.{md,hbs,yml,less}'],
+        tasks: ['less','assemble']
       },
       livereload: {
         options: {
@@ -62,6 +62,17 @@ module.exports = function(grunt) {
       }
     },
 
+    // Compile Less to CSS
+    less: {
+      options: {
+        paths: ['<%= site.styles %>', '<%= site.styles %>/bootstrap' ]
+      },  
+      pages: {
+        src: ['<%= site.styles %>/style.less'],
+        dest: '<%= site.assets %>/css/style.css'
+      }   
+    },  
+
     assemble: {
       pages: {
         options: {
@@ -90,12 +101,14 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('assemble-less');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('server', [
     'clean',
+    'less',
     'assemble',
     'connect:livereload',
     'watch'
@@ -103,6 +116,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'clean',
+    'less',
     'assemble'
   ]);
 

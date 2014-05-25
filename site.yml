@@ -17,7 +17,7 @@ data:             <%= site.src %>/data
 date:             <%= new Date() %>
 
 # Styles
-styles:           <%= site.src %>/styles
+styles:           <%= site.src %>/style
 
 # Content
 content:          <%= site.src %>/content
@@ -36,4 +36,5 @@ layouts:          <%= site.templates %>/layouts
 # site metadata
 title:						assemblog | a blog lovingly handcrafted with assemble static site generator
 description:			a blog lovingly handcrafted with assemble static site generator
+analytics: UA-XXXXX-X
 

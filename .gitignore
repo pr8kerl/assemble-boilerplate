@@ -11,6 +11,8 @@ lib-cov
 pids
 logs
 results
+_site/css/style.css
+_site/**/*html
 
 npm-debug.log
 node_modules

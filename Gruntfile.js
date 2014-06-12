@@ -11,9 +11,9 @@
 
 // # Globbing
 // for performance reasons we're only matching one level down:
-// '<%= site.src %>/templates/pages/{,*/}*.hbs'
+// '<%= site.src %>/pages/{,*/}*.hbs'
 // use this if you want to match all subfolders:
-// '<%= site.src %>/templates/pages/**/*.hbs'
+// '<%= site.src %>/pages/**/*.hbs'
 
 module.exports = function(grunt) {
 
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
 
     watch: {
       assemble: {
-        files: ['src/{content,data,templates,style}/{,*/,**/}*.{md,hbs,yml,less}'],
+        files: ['src/{content,data,pages,partials,layouts,style,helpers}/{,*/,**/}*.{md,hbs,yml,js,less}'],
         tasks: ['less','assemble']
       },
       livereload: {
@@ -74,22 +74,25 @@ module.exports = function(grunt) {
     },  
 
     assemble: {
+      options: {
+        flatten: true,
+        today: '<%= grunt.template.today() %>',
+        pkg: '<%= pkg %>',
+        site: '<%= site %>',
+        assets: '<%= site.assets %>',
+        layoutdir: '<%= site.layouts %>',
+        layout: 'default.hbs',
+        data: '<%= site.data %>/*.{json,yml}',
+        partials: '<%= site.partials %>/*.hbs',
+        plugins: '<%= site.plugins %>',
+        postprocess: pretty
+      },  
       pages: {
         options: {
-          flatten: true,
-          today: '<%= grunt.template.today() %>',
-          pkg: '<%= pkg %>',
-          site: '<%= site %>',
-          assets: '<%= site.assets %>',
-          layoutdir: '<%= site.layouts %>',
-          layout: 'default.hbs',
-          data: '<%= site.data %>/*.{json,yml}',
-          partials: '<%= site.partials %>/*.hbs',
-          plugins: '<%= site.plugins %>',
-          postprocess: pretty
+          layout: 'default.hbs'
         },
         files: {
-          '<%= site.dest %>/': ['<%= site.src %>/templates/pages/*.hbs']
+          '<%= site.dest %>/': ['<%= site.src %>/pages/*.hbs']
         }
       }
     },
